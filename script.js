@@ -1,137 +1,93 @@
 (function() {
     'use strict';
 
+    const LS_KEY = 'hoi4_forum_messages';
+    const PAGE_SIZE = 5;
+    let currentFilter = 'all';
+    let visibleCount = PAGE_SIZE;
+
     // ====== Hamburger Menu ======
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.getElementById('nav');
-    const navLinks = nav.querySelectorAll('a');
 
     function closeMenu() {
         nav.classList.remove('open');
         menuToggle.classList.remove('open');
         document.body.style.overflow = '';
     }
-
     function openMenu() {
         nav.classList.add('open');
         menuToggle.classList.add('open');
         document.body.style.overflow = 'hidden';
     }
-
     menuToggle.addEventListener('click', function() {
-        if (nav.classList.contains('open')) {
-            closeMenu();
-        } else {
-            openMenu();
-        }
+        nav.classList.contains('open') ? closeMenu() : openMenu();
     });
-
-    // Close menu when a nav link is clicked
-    navLinks.forEach(function(link) {
-        link.addEventListener('click', function() {
-            closeMenu();
-        });
+    document.querySelectorAll('#nav a').forEach(function(l) {
+        l.addEventListener('click', closeMenu);
     });
-
-    // Close menu when clicking outside
     document.addEventListener('click', function(e) {
-        if (nav.classList.contains('open') &&
-            !nav.contains(e.target) &&
-            !menuToggle.contains(e.target)) {
+        if (nav.classList.contains('open') && !nav.contains(e.target) && !menuToggle.contains(e.target)) {
             closeMenu();
         }
     });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && nav.classList.contains('open')) closeMenu();
+    });
 
-    // ====== Smooth Scroll ======
-    navLinks.forEach(function(link) {
+    // ====== Smooth Scroll & Active Nav ======
+    document.querySelectorAll('#nav a').forEach(function(link) {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            var targetId = this.getAttribute('href');
-            var target = document.querySelector(targetId);
-            if (target) {
-                var offset = target.offsetTop - 60;
-                window.scrollTo({ top: offset, behavior: 'smooth' });
-            }
+            var target = document.querySelector(this.getAttribute('href'));
+            if (target) window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
         });
     });
 
-    // ====== Active Nav on Scroll ======
     var sections = document.querySelectorAll('section[id]');
-    var scrollTimeout;
-
-    function updateActiveNav() {
-        var scrollY = window.pageYOffset + 100;
-        var current = '';
-        sections.forEach(function(section) {
-            var top = section.offsetTop;
-            var height = section.offsetHeight;
-            if (scrollY >= top && scrollY < top + height) {
-                current = section.getAttribute('id');
-            }
-        });
-        navLinks.forEach(function(link) {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === '#' + current) {
-                link.classList.add('active');
-            }
-        });
-    }
-
     window.addEventListener('scroll', function() {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(updateActiveNav, 50);
+        var scrollY = window.pageYOffset + 120;
+        var current = '';
+        sections.forEach(function(s) {
+            if (scrollY >= s.offsetTop && scrollY < s.offsetTop + s.offsetHeight) current = s.id;
+        });
+        document.querySelectorAll('#nav a').forEach(function(l) {
+            l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+        });
     });
 
-    // ====== UP主 Cards Rendering ======
-    function renderUperCards() {
+    // ====== UP主 Cards ======
+    (function renderUperCards() {
         var grid = document.getElementById('uperGrid');
         if (!grid || typeof UPER_DATA === 'undefined') return;
-
         var html = '';
         UPER_DATA.forEach(function(up) {
-            var plays = up.total_play;
-            var playStr;
-            if (plays >= 10000000) {
-                playStr = (plays / 10000000).toFixed(1) + '千万播放';
-            } else if (plays >= 10000) {
-                playStr = (plays / 10000).toFixed(1) + '万播放';
-            } else {
-                playStr = plays + '播放';
-            }
-
-            // 用名字首字生成头像
-            var initial = up.name.charAt(0);
-
-            html += [
-                '<a href="' + up.space_url + '" target="_blank" rel="noopener" class="uper-card">',
-                '  <div class="uper-avatar">' + initial + '</div>',
-                '  <div class="uper-info">',
-                '    <div class="uper-name">' + up.name + '</div>',
-                '    <div class="uper-sign">' + up.sign + '</div>',
-                '    <div class="uper-meta">' + up.video_count + '个视频 · ' + playStr + '</div>',
-                '  </div>',
-                '</a>'
-            ].join('');
+            var plays = up.total_play >= 10000000 ? (up.total_play / 10000000).toFixed(1) + '千万播放'
+                : up.total_play >= 10000 ? (up.total_play / 10000).toFixed(1) + '万播放'
+                : up.total_play + '播放';
+            var avatarHtml = up.avatar
+                ? '<img src="' + up.avatar + '" alt="" class="uper-avatar-img" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';">' +
+                  '<div class="uper-avatar" style="display:none">' + up.name.charAt(0) + '</div>'
+                : '<div class="uper-avatar">' + up.name.charAt(0) + '</div>';
+            html += '<a href="https://space.bilibili.com/' + up.mid + '" target="_blank" rel="noopener" class="uper-card">' +
+                '<div class="uper-avatar-wrap">' + avatarHtml + '</div>' +
+                '<div class="uper-info"><div class="uper-name">' + up.name + '</div>' +
+                '<div class="uper-desc">' + up.desc + '</div>' +
+                '<div class="uper-meta">' + up.video_count + '个视频 · ' + plays + '</div></div></a>';
         });
-
         grid.innerHTML = html;
-    }
-
-    renderUperCards();
+    })();
 
     // ====== Scroll Animation ======
-    var observerOptions = { threshold: 0.1, rootMargin: '0px 0px -30px 0px' };
-
     var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                observer.unobserve(entry.target);
+        entries.forEach(function(e) {
+            if (e.isIntersecting) {
+                e.target.style.opacity = '1';
+                e.target.style.transform = 'translateY(0)';
+                observer.unobserve(e.target);
             }
         });
-    }, observerOptions);
-
+    }, { threshold: 0.1 });
     document.querySelectorAll('.card, .tactic-card, .step, .uper-card, .feature-section').forEach(function(el) {
         el.style.opacity = '0';
         el.style.transform = 'translateY(24px)';
@@ -139,75 +95,137 @@
         observer.observe(el);
     });
 
-    // ====== Message Board Filters ======
-    var filterBtns = document.querySelectorAll('.filter-btn');
+    // ====== Forum Storage ======
+    function loadMessages() {
+        try {
+            return JSON.parse(localStorage.getItem(LS_KEY)) || [];
+        } catch (e) {
+            return [];
+        }
+    }
+    function saveMessages(msgs) {
+        try {
+            localStorage.setItem(LS_KEY, JSON.stringify(msgs));
+        } catch (e) {
+            showToast('存储空间不足，请清理旧留言');
+        }
+    }
 
-    filterBtns.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            var filter = this.getAttribute('data-filter');
+    function formatTime(ts) {
+        var now = Date.now();
+        var diff = now - ts;
+        var min = Math.floor(diff / 60000);
+        if (min < 1) return '刚刚';
+        if (min < 60) return min + '分钟前';
+        var hr = Math.floor(min / 60);
+        if (hr < 24) return hr + '小时前';
+        var day = Math.floor(hr / 24);
+        if (day < 30) return day + '天前';
+        var d = new Date(ts);
+        return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+    }
 
-            filterBtns.forEach(function(b) { b.classList.remove('active'); });
-            this.classList.add('active');
+    function isToday(ts) {
+        var d = new Date(ts);
+        var now = new Date();
+        return d.getFullYear() === now.getFullYear() &&
+               d.getMonth() === now.getMonth() &&
+               d.getDate() === now.getDate();
+    }
 
-            var messages = document.querySelectorAll('.message-item:not(.pinned)');
-            messages.forEach(function(msg) {
-                if (filter === 'all' || msg.getAttribute('data-category') === filter) {
-                    msg.style.display = 'block';
-                } else {
-                    msg.style.display = 'none';
-                }
+    // ====== Render Messages ======
+    var categoryNames = { general: '综合', guide: '攻略', question: '问答', team: '联机', mod: 'MOD' };
+
+    function renderMessages() {
+        var all = loadMessages();
+        var list = document.getElementById('messagesList');
+        var loadMoreWrap = document.getElementById('loadMoreWrap');
+
+        // Sort newest first
+        all.sort(function(a, b) { return b.time - a.time; });
+
+        // Filter
+        var filtered = currentFilter === 'all' ? all : all.filter(function(m) { return m.category === currentFilter; });
+
+        // Paginate
+        var visible = filtered.slice(0, visibleCount);
+        var hasMore = filtered.length > visibleCount;
+
+        if (filtered.length === 0) {
+            list.innerHTML = '<div class="empty-state">暂无留言，快来发表第一条吧</div>';
+            loadMoreWrap.style.display = 'none';
+        } else {
+            var html = '';
+            visible.forEach(function(m) {
+                html += buildMessageHTML(m);
             });
-        });
-    });
+            list.innerHTML = html;
+            loadMoreWrap.style.display = hasMore ? 'block' : 'none';
 
-    // ====== Comment Form ======
-    var commentForm = document.getElementById('commentForm');
-    if (commentForm) {
-        commentForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+            // Bind like/reply buttons
+            list.querySelectorAll('.like-btn').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var msgId = parseInt(this.getAttribute('data-id'));
+                    handleLike(msgId);
+                });
+            });
+            list.querySelectorAll('.reply-btn').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var msgId = parseInt(this.getAttribute('data-id'));
+                    handleReply(msgId);
+                });
+            });
+        }
+        updateStats(all);
+    }
 
-            var username = document.getElementById('username').value.trim();
-            var title = document.getElementById('commentTitle').value.trim();
-            var text = document.getElementById('commentText').value.trim();
-            var category = document.getElementById('commentCategory').value;
+    function buildMessageHTML(m) {
+        var cat = categoryNames[m.category] || m.category;
+        return '<div class="message-item" data-category="' + m.category + '">' +
+            '<div class="message-header">' +
+            '<span class="category-tag ' + m.category + '">' + cat + '</span>' +
+            '<span class="message-title">' + escapeHtml(m.title) + '</span>' +
+            '</div>' +
+            '<div class="message-preview">' + escapeHtml(m.content) + '</div>' +
+            (m.replies && m.replies.length ? renderReplies(m.replies) : '') +
+            '<div class="message-footer">' +
+            '<div class="author-info"><span class="author-name">' + escapeHtml(m.author) + '</span><span class="post-time">' + formatTime(m.time) + '</span></div>' +
+            '<div class="message-stats">' +
+            '<button class="like-btn" data-id="' + m.id + '">+<span>' + (m.likes || 0) + '</span></button>' +
+            '<button class="reply-btn" data-id="' + m.id + '">回复</button>' +
+            '</div></div></div>';
+    }
 
-            if (!username || !title || !text) return;
+    function renderReplies(replies) {
+        return '<div class="replies-list">' + replies.map(function(r) {
+            return '<div class="reply-item"><span class="reply-author">' + escapeHtml(r.author) + '</span>: ' + escapeHtml(r.text) + '<span class="post-time"> ' + formatTime(r.time) + '</span></div>';
+        }).join('') + '</div>';
+    }
 
-            var categoryNames = {
-                'general': '综合',
-                'guide': '攻略',
-                'question': '问答',
-                'team': '联机',
-                'mod': 'MOD'
-            };
+    function handleLike(msgId) {
+        var msgs = loadMessages();
+        var msg = msgs.find(function(m) { return m.id === msgId; });
+        if (!msg) return;
+        msg.likes = (msg.likes || 0) + 1;
+        saveMessages(msgs);
+        renderMessages();
+    }
 
-            var newMsg = document.createElement('div');
-            newMsg.className = 'message-item';
-            newMsg.setAttribute('data-category', category);
-            newMsg.innerHTML =
-                '<div class="message-header">' +
-                '  <span class="category-tag ' + category + '">' + (categoryNames[category] || category) + '</span>' +
-                '  <span class="message-title">' + escapeHtml(title) + '</span>' +
-                '</div>' +
-                '<div class="message-preview">' + escapeHtml(text) + '</div>' +
-                '<div class="message-footer">' +
-                '  <div class="author-info"><span class="author-name">🎮 ' + escapeHtml(username) + '</span><span class="post-time">刚刚</span></div>' +
-                '  <div class="message-stats"><span>👍 0</span><span>💬 0</span></div>' +
-                '</div>';
+    function handleReply(msgId) {
+        var text = prompt('输入你的回复：');
+        if (!text || !text.trim()) return;
+        var author = prompt('你的昵称：');
+        if (!author || !author.trim()) return;
 
-            var list = document.getElementById('messagesList');
-            list.insertBefore(newMsg, list.firstChild);
-
-            // Flash animation
-            newMsg.style.background = 'rgba(88,166,255,0.1)';
-            setTimeout(function() { newMsg.style.background = ''; newMsg.style.transition = 'background 0.6s'; }, 100);
-
-            // Reset
-            document.getElementById('username').value = '';
-            document.getElementById('commentTitle').value = '';
-            document.getElementById('commentText').value = '';
-            document.getElementById('commentCategory').value = 'general';
-        });
+        var msgs = loadMessages();
+        var msg = msgs.find(function(m) { return m.id === msgId; });
+        if (!msg) return;
+        if (!msg.replies) msg.replies = [];
+        msg.replies.push({ author: author.trim(), text: text.trim(), time: Date.now() });
+        saveMessages(msgs);
+        renderMessages();
     }
 
     function escapeHtml(str) {
@@ -216,29 +234,81 @@
         return div.innerHTML;
     }
 
+    function updateStats(all) {
+        var total = all.length;
+        var today = all.filter(function(m) { return isToday(m.time); }).length;
+        var replies = all.reduce(function(acc, m) { return acc + (m.replies ? m.replies.length : 0); }, 0);
+        document.getElementById('statTotal').textContent = total;
+        document.getElementById('statToday').textContent = today;
+        document.getElementById('statReplies').textContent = replies;
+    }
+
+    // ====== Form Submit ======
+    var commentForm = document.getElementById('commentForm');
+    if (commentForm) {
+        commentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var username = document.getElementById('username').value.trim();
+            var title = document.getElementById('commentTitle').value.trim();
+            var text = document.getElementById('commentText').value.trim();
+            var category = document.getElementById('commentCategory').value;
+
+            if (!username || !title || !text) {
+                showToast('请填写完整的留言信息');
+                return;
+            }
+
+            var msgs = loadMessages();
+            var newMsg = {
+                id: Date.now(),
+                author: username,
+                title: title,
+                content: text,
+                category: category,
+                time: Date.now(),
+                likes: 0,
+                replies: []
+            };
+            msgs.push(newMsg);
+            saveMessages(msgs);
+
+            // Reset form
+            document.getElementById('username').value = '';
+            document.getElementById('commentTitle').value = '';
+            document.getElementById('commentText').value = '';
+            document.getElementById('commentCategory').value = 'general';
+
+            // Reset filter to show new post
+            currentFilter = 'all';
+            visibleCount = PAGE_SIZE;
+            document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+            document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+            renderMessages();
+            showToast('留言发表成功');
+        });
+    }
+
+    // ====== Filter ======
+    document.querySelectorAll('.filter-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            currentFilter = this.getAttribute('data-filter');
+            visibleCount = PAGE_SIZE;
+            document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+            this.classList.add('active');
+            renderMessages();
+        });
+    });
+
     // ====== Load More ======
     var loadMoreBtn = document.getElementById('loadMoreBtn');
     if (loadMoreBtn) {
         loadMoreBtn.addEventListener('click', function() {
-            var list = document.getElementById('messagesList');
-            var dummy = document.createElement('div');
-            dummy.className = 'message-item';
-            dummy.setAttribute('data-category', 'general');
-            dummy.innerHTML =
-                '<div class="message-header">' +
-                '  <span class="category-tag general">综合</span>' +
-                '  <span class="message-title">更多留言即将开放</span>' +
-                '</div>' +
-                '<div class="message-preview">留言板功能持续完善中，敬请期待更多互动功能上线…</div>' +
-                '<div class="message-footer">' +
-                '  <div class="author-info"><span class="author-name">🛠 系统消息</span><span class="post-time">刚刚</span></div>' +
-                '  <div class="message-stats"><span>👍 0</span><span>💬 0</span></div>' +
-                '</div>';
-            list.appendChild(dummy);
+            visibleCount += PAGE_SIZE;
+            renderMessages();
         });
     }
 
-    // ====== Download Button ======
+    // ====== Download Buttons ======
     var dlBtn = document.getElementById('dlBtn');
     if (dlBtn) {
         dlBtn.addEventListener('click', function(e) {
@@ -246,9 +316,7 @@
             showToast('感谢关注！游戏下载链接将在后续更新中提供。');
         });
     }
-
-    var altLinks = document.querySelectorAll('.alt-link');
-    altLinks.forEach(function(link) {
+    document.querySelectorAll('.alt-link').forEach(function(link) {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             showToast('该下载方式正在维护，请稍后再试。');
@@ -259,32 +327,22 @@
     function showToast(msg) {
         var existing = document.querySelector('.toast');
         if (existing) existing.remove();
-
         var toast = document.createElement('div');
         toast.className = 'toast';
         toast.textContent = msg;
-        toast.style.cssText =
-            'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);' +
-            'background:#21262d;color:#c9d1d9;padding:12px 24px;border-radius:8px;' +
-            'border:1px solid #30363d;font-size:0.9rem;z-index:9999;' +
-            'opacity:0;transition:opacity 0.3s;pointer-events:none;';
-        document.body.appendChild(toast);
-
-        requestAnimationFrame(function() {
-            toast.style.opacity = '1';
+        Object.assign(toast.style, {
+            position: 'fixed', bottom: '24px', left: '50%', transform: 'translateX(-50%)',
+            background: '#25261c', color: '#d4c5a0', padding: '12px 24px', borderRadius: '2px',
+            border: '1px solid #8a7030', fontSize: '0.88rem', zIndex: '9999',
+            opacity: '0', transition: 'opacity 0.3s', pointerEvents: 'none',
+            fontFamily: 'inherit', letterSpacing: '0.04em'
         });
-
-        setTimeout(function() {
-            toast.style.opacity = '0';
-            setTimeout(function() { toast.remove(); }, 300);
-        }, 2500);
+        document.body.appendChild(toast);
+        requestAnimationFrame(function() { toast.style.opacity = '1'; });
+        setTimeout(function() { toast.style.opacity = '0'; setTimeout(function() { toast.remove(); }, 300); }, 2500);
     }
 
-    // ====== Keyboard shortcut: Escape to close menu ======
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && nav.classList.contains('open')) {
-            closeMenu();
-        }
-    });
+    // ====== Init ======
+    renderMessages();
 
 })();

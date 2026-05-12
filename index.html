@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>钢铁雄心4 攻略站 — 从入门到精通</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -11,8 +12,7 @@
     <header class="header" id="header">
         <div class="container">
             <a href="#home" class="logo">
-                <span class="logo-icon">⚔️</span>
-                <span class="logo-text">钢4攻略站</span>
+                <img src="images/logo.png" alt="HOI4" class="logo-img">
             </a>
             <nav class="nav" id="nav">
                 <a href="#home" class="nav-link active">首页</a>
@@ -21,7 +21,7 @@
                 <a href="#download" class="nav-link">下载</a>
                 <a href="#discussion" class="nav-link">留言</a>
             </nav>
-            <button class="menu-toggle" id="menuToggle" aria-label="菜单">
+            <button class="menu-toggle" id="menuToggle" aria-label="NAV">
                 <span></span><span></span><span></span>
             </button>
         </div>
@@ -29,18 +29,19 @@
 
     <!-- ====== Hero ====== -->
     <section id="home" class="hero">
+        <div class="hero-bg" style="background-image: url('images/hero_bg.webp')"></div>
         <div class="container">
             <div class="hero-content">
                 <h2>钢铁雄心<span class="highlight">4</span></h2>
                 <p class="hero-subtitle">Paradox Interactive 终极二战策略游戏 · 从零开始征服世界</p>
                 <div class="hero-buttons">
-                    <a href="#tutorial" class="btn btn-primary">📖 开始学习</a>
-                    <a href="#zhuge" class="btn btn-accent">🧠 高手进阶</a>
+                    <a href="#tutorial" class="btn btn-primary">开始学习</a>
+                    <a href="#zhuge" class="btn btn-accent">高手进阶</a>
                 </div>
                 <div class="hero-stats">
                     <div class="hero-stat"><strong>200+</strong><span>条攻略视频收录</span></div>
                     <div class="hero-stat"><strong>3</strong><span>大学习板块</span></div>
-                    <div class="hero-stat"><strong>10+</strong><span>位推荐UP主</span></div>
+                    <div class="hero-stat"><strong>20</strong><span>位推荐UP主</span></div>
                 </div>
             </div>
         </div>
@@ -49,22 +50,21 @@
     <!-- ====== 教程总览 ====== -->
     <section id="tutorial" class="tutorial">
         <div class="container">
-            <h2 class="section-heading">📚 从零到精通</h2>
+            <h2 class="section-heading">从零到精通</h2>
             <p class="section-desc">三个板块循序渐进，手把手教你玩转钢铁雄心4</p>
 
             <!-- ===== 新手入门 ===== -->
             <div class="tutorial-block" id="beginner">
                 <div class="block-header">
-                    <span class="block-icon">🌱</span>
+                    <span class="block-icon">I</span>
                     <div>
                         <h3>新手入门 — 零基础看懂游戏</h3>
                         <p>这一板块写给从未接触过P社游戏的纯新手。目标：认得清按钮，按得对快捷键。</p>
                     </div>
                 </div>
 
-                <!-- 键盘快捷键 -->
                 <div class="card">
-                    <h4 class="card-title">⌨ 常用键盘快捷键一览</h4>
+                    <h4 class="card-title">常用键盘快捷键一览</h4>
                     <div class="table-scroll">
                         <table class="key-table">
                             <thead>
@@ -91,7 +91,7 @@
                                 <tr><td><kbd>T</kbd> / <kbd>Y</kbd> / <kbd>U</kbd></td><td>训练 / 生产 / 征召</td></tr>
                                 <tr><td><kbd>I</kbd> / <kbd>O</kbd></td><td>情报 / 军官团</td></tr>
                                 <tr><td><kbd>Ctrl + F</kbd></td><td>搜索国家</td></tr>
-                                <tr><td rowspan="3">战斗计划画线</td><td><kbd>右键</kbd></td><td>取消当前画线</td></tr>
+                                <tr><td rowspan="3">战斗计划</td><td><kbd>右键</kbd></td><td>取消当前画线</td></tr>
                                 <tr><td><kbd>Tab</kbd></td><td>切换陆/海/空战斗计划</td></tr>
                                 <tr><td><kbd>Ctrl + H</kbd></td><td>隐藏/显示部队</td></tr>
                             </tbody>
@@ -99,9 +99,8 @@
                     </div>
                 </div>
 
-                <!-- 界面按钮 -->
                 <div class="card">
-                    <h4 class="card-title">🖥 游戏界面按钮速查</h4>
+                    <h4 class="card-title">游戏界面按钮速查</h4>
                     <div class="table-scroll">
                         <table class="key-table">
                             <thead>
@@ -130,10 +129,9 @@
                     </div>
                 </div>
 
-                <!-- 基本概念 -->
                 <div class="card-grid two-col">
                     <div class="card">
-                        <h4 class="card-title">📐 必须理解的 5 个数值</h4>
+                        <h4 class="card-title">必须理解的 5 个数值</h4>
                         <ul class="info-list">
                             <li><strong>组织度 (Organization)</strong> — 部队的"血量"，打到0就撤退。编入步炮兵可提高。</li>
                             <li><strong>战斗力 (Soft/Hard Attack)</strong> — 软攻打步兵，硬攻打坦克。自行火炮提高软攻。</li>
@@ -143,13 +141,13 @@
                         </ul>
                     </div>
                     <div class="card">
-                        <h4 class="card-title">⚠ 新手最常犯的 5 个错误</h4>
-                        <ul class="info-list">
-                            <li>❌ 一直5倍速跑时间，科研/国策/焦点全错过</li>
-                            <li>❌ 不画战线就直接右键进攻，不吃计划加成</li>
-                            <li>❌ 疯狂爆兵但不造军工，枪都配不齐</li>
-                            <li>❌ 所有部队堆在一个格子，补给瞬间崩盘</li>
-                            <li>❌ 不看制空权就开打，被AI飞机舔爆</li>
+                        <h4 class="card-title">新手最常犯的 5 个错误</h4>
+                        <ul class="info-list error-list">
+                            <li><span>01</span> 一直5倍速跑时间，科研/国策/焦点全错过</li>
+                            <li><span>02</span> 不画战线就直接右键进攻，不吃计划加成</li>
+                            <li><span>03</span> 疯狂爆兵但不造军工，枪都配不齐</li>
+                            <li><span>04</span> 所有部队堆在一个格子，补给瞬间崩盘</li>
+                            <li><span>05</span> 不看制空权就开打，被AI飞机舔爆</li>
                         </ul>
                     </div>
                 </div>
@@ -158,16 +156,15 @@
             <!-- ===== 进阶操作 ===== -->
             <div class="tutorial-block" id="advanced">
                 <div class="block-header">
-                    <span class="block-icon">⚡</span>
+                    <span class="block-icon">II</span>
                     <div>
                         <h3>进阶操作 — 学会正常打赢战争</h3>
                         <p>有了基础认知后，你需要一套"标准开局流程"和"基础编制"，目标是能独立打通一场战争。</p>
                     </div>
                 </div>
 
-                <!-- 标准开局流程 -->
                 <div class="card">
-                    <h4 class="card-title">📋 标准开局流程（以德国1936为例）</h4>
+                    <h4 class="card-title">标准开局流程（以德国 1936 为例）</h4>
                     <div class="steps">
                         <div class="step">
                             <div class="step-num">1</div>
@@ -228,10 +225,9 @@
                     </div>
                 </div>
 
-                <!-- 编制推荐 -->
                 <div class="card-grid two-col">
                     <div class="card">
-                        <h4 class="card-title">🛡 基础编制推荐</h4>
+                        <h4 class="card-title">基础编制推荐</h4>
                         <div class="table-scroll">
                             <table class="key-table small">
                                 <thead><tr><th>用途</th><th>宽度</th><th>组成</th><th>支援连</th></tr></thead>
@@ -247,7 +243,7 @@
                         <p class="table-note">* 宽度建议：平原90宽=3个30宽师或5个18宽师。根据地形微调。</p>
                     </div>
                     <div class="card">
-                        <h4 class="card-title">🎯 基础作战流程</h4>
+                        <h4 class="card-title">基础作战流程</h4>
                         <ul class="info-list">
                             <li><strong>Phase 1 空军压制</strong>：战斗机抢制空，CAS舔地。制空权是地面战的胜负手。</li>
                             <li><strong>Phase 2 步兵推进</strong>：主力师执行战斗计划，全线推线施压。</li>
@@ -259,22 +255,21 @@
                     </div>
                 </div>
 
-                <!-- 新手国家推荐 -->
                 <div class="card-grid three-col">
                     <div class="card card-accent">
-                        <h4 class="card-title">🇩🇪 德国 — 进攻流首选</h4>
+                        <h4 class="card-title"><span class="nation-tag">GER</span> 德国 — 进攻流首选</h4>
                         <p>工业强、国策快、主动权在你手里。适合练习装甲突破和闪电战。唯一难点是两线作战。</p>
-                        <span class="tag">推荐指数 ★★★★★</span>
+                        <span class="tag">推荐等级 5/5</span>
                     </div>
                     <div class="card card-accent">
-                        <h4 class="card-title">🇬🇧 英国 — 海空流首选</h4>
+                        <h4 class="card-title"><span class="nation-tag">UK</span> 英国 — 海空流首选</h4>
                         <p>岛国安全，专注海军和空军。适合练习制海权、战略轰炸和殖民地防守。</p>
-                        <span class="tag">推荐指数 ★★★★☆</span>
+                        <span class="tag">推荐等级 4/5</span>
                     </div>
                     <div class="card card-accent">
-                        <h4 class="card-title">🇺🇸 美国 — 后期流首选</h4>
+                        <h4 class="card-title"><span class="nation-tag">USA</span> 美国 — 后期流首选</h4>
                         <p>前期看海种田，后期工业碾压全世界。适合练习经济建设和后期大兵团作战。</p>
-                        <span class="tag">推荐指数 ★★★★☆</span>
+                        <span class="tag">推荐等级 4/5</span>
                     </div>
                 </div>
             </div>
@@ -282,20 +277,18 @@
             <!-- ===== 诸葛亮板块 ===== -->
             <div class="tutorial-block" id="zhuge">
                 <div class="block-header">
-                    <span class="block-icon">🧠</span>
+                    <span class="block-icon">III</span>
                     <div>
                         <h3>诸葛亮 — 高手才知道的操作</h3>
                         <p>学会正常玩之后，这些技巧能让你战力翻倍。本版块还整理了B站最优质的钢4UP主。</p>
                     </div>
                 </div>
 
-                <!-- 高级技巧 -->
-                <h4 class="section-label">🎯 高级战术</h4>
+                <h4 class="section-label">高级战术</h4>
                 <div class="card-grid two-col">
-                    <!-- 守港吃兵 -->
                     <div class="card tactic-card">
-                        <div class="tactic-badge">TOP 1</div>
-                        <h4 class="card-title">🏝 守港吃兵（港口钓鱼）</h4>
+                        <div class="tactic-badge">TACTIC 01</div>
+                        <h4 class="card-title">守港吃兵（港口钓鱼）</h4>
                         <div class="tactic-body">
                             <p><strong>原理：</strong>AI 的港口救援逻辑存在一个特性——当一个港口未被占领但被围困时，AI 会不断海运部队试图夺回。玩家可以不占领港口，让 AI 持续送兵，然后在港口周边部署优势兵力围点打援。</p>
                             <ol>
@@ -306,14 +299,13 @@
                                 <li>登陆部队组织度极低（刚上岸有 debuff），轻松歼灭</li>
                                 <li>只要你不占港口，AI 就会不断送兵→被歼→再送兵</li>
                             </ol>
-                            <p class="tip">💡 <strong>进阶：</strong>配合潜艇在港口外伏击运输船，连船带人一起消灭。此招对日本、英国、意大利等岛国/半岛 AI 尤其好用。</p>
+                            <p class="tip"><strong>TACTICAL NOTE：</strong>配合潜艇在港口外伏击运输船，连船带人一起消灭。此招对日本、英国、意大利等岛国/半岛 AI 尤其好用。</p>
                         </div>
                     </div>
 
-                    <!-- 连环饺子 -->
                     <div class="card tactic-card">
-                        <div class="tactic-badge">TOP 2</div>
-                        <h4 class="card-title">🥟 连环饺子（包围歼灭）</h4>
+                        <div class="tactic-badge">TACTIC 02</div>
+                        <h4 class="card-title">连环饺子（包围歼灭）</h4>
                         <div class="tactic-body">
                             <p><strong>原理：</strong>利用装甲师的高速突破能力撕开防线，穿插到敌后完成合围。被包围的部队失去补给，组织度急剧下降，最终被轻松歼灭。不要只围一个小饺子——用多个装甲矛头同时穿插，制造连环包围圈。</p>
                             <ol>
@@ -324,14 +316,13 @@
                                 <li>步兵跟进填线，防止敌军反包围</li>
                                 <li>合围后暂停进攻，等被围敌军饿死再清剿</li>
                             </ol>
-                            <p class="tip">💡 <strong>关键点：</strong>装甲师速度要快（>8km/h），否则AI会跑掉。推荐轻坦/中坦+摩托化步兵组合。</p>
+                            <p class="tip"><strong>TACTICAL NOTE：</strong>装甲师速度要快（>8km/h），否则AI会跑掉。推荐轻坦/中坦+摩托化步兵组合。</p>
                         </div>
                     </div>
 
-                    <!-- 诱敌深入 -->
                     <div class="card tactic-card">
-                        <div class="tactic-badge">TOP 3</div>
-                        <h4 class="card-title">🪤 诱敌深入（故意放缺口）</h4>
+                        <div class="tactic-badge">TACTIC 03</div>
+                        <h4 class="card-title">诱敌深入（故意放缺口）</h4>
                         <div class="tactic-body">
                             <p><strong>原理：</strong>故意在防线上留一个或几个格子的缺口，让 AI 部队突入，形成"突出部"。等 AI 深入后，用预备队从两翼夹击，切断突出部根部，一口吃掉突入的 AI 主力。</p>
                             <ol>
@@ -342,14 +333,13 @@
                                 <li>两侧同时向中间进攻，切断突出部与AI主力的联系</li>
                                 <li>包饺子完成，吃掉 AI 的进攻主力</li>
                             </ol>
-                            <p class="tip">💡 <strong>配合守港使用效果更佳：</strong>故意让AI占领一个港口，等AI主力登陆后再切断其陆上补给线，配合海军封锁海上补给。</p>
+                            <p class="tip"><strong>TACTICAL NOTE：</strong>故意让AI占领一个港口，等AI主力登陆后再切断其陆上补给线，配合海军封锁海上补给，配合守港使用效果更佳。</p>
                         </div>
                     </div>
 
-                    <!-- 空降斩首 -->
                     <div class="card tactic-card">
-                        <div class="tactic-badge">TOP 4</div>
-                        <h4 class="card-title">🪂 空降斩首（伞兵速胜）</h4>
+                        <div class="tactic-badge">TACTIC 04</div>
+                        <h4 class="card-title">空降斩首（伞兵速胜）</h4>
                         <div class="tactic-body">
                             <p><strong>原理：</strong>获得制空权后，空降伞兵直接跳到敌方首都或关键胜利点（VP），快速迫使小国投降。配合港口登陆同时发动，AI 根本防不过来。</p>
                             <ol>
@@ -359,14 +349,13 @@
                                 <li>空降目标选择敌方首都或核心VP</li>
                                 <li>同时发动海军登陆，让AI首尾不能相顾</li>
                             </ol>
-                            <p class="tip">💡 <strong>典型应用：</strong>德国打法国，伞兵空降巴黎+海军陆战队登陆诺曼底，法国几天投降。打荷兰、比利时同理。</p>
+                            <p class="tip"><strong>TACTICAL NOTE：</strong>德国打法国，伞兵空降巴黎+海军陆战队登陆诺曼底，法国几天投降。打荷兰、比利时同理。</p>
                         </div>
                     </div>
 
-                    <!-- 骗线 -->
                     <div class="card tactic-card">
-                        <div class="tactic-badge">TOP 5</div>
-                        <h4 class="card-title">🪖 骗线战术（拉扯AI部队）</h4>
+                        <div class="tactic-badge">TACTIC 05</div>
+                        <h4 class="card-title">骗线战术（拉扯AI部队）</h4>
                         <div class="tactic-body">
                             <p><strong>原理：</strong>AI 会针对你的兵力部署调整防守密度。你在某段前线集中兵力，AI 就会把相邻区域的守军调过来。然后你突然在防守薄弱的区域发动真正的进攻。</p>
                             <ol>
@@ -376,14 +365,13 @@
                                 <li>在B区域（真正进攻方向）突然集结装甲师</li>
                                 <li>B区域防守空虚，一口气突破</li>
                             </ol>
-                            <p class="tip">💡 <strong>配合假前线：</strong>甚至在A区域画假的进攻箭头（但不实际进攻），让AI更加确信你要打这里。</p>
+                            <p class="tip"><strong>TACTICAL NOTE：</strong>甚至在A区域画假的进攻箭头（但不实际进攻），让AI更加确信你要打这里。</p>
                         </div>
                     </div>
 
-                    <!-- 补给站狙击 -->
                     <div class="card tactic-card">
-                        <div class="tactic-badge">TOP 6</div>
-                        <h4 class="card-title">🚂 补给站狙击（断补战术）</h4>
+                        <div class="tactic-badge">TACTIC 06</div>
+                        <h4 class="card-title">补给站狙击（断补战术）</h4>
                         <div class="tactic-body">
                             <p><strong>原理：</strong>新版本补给系统是命门。用机动部队快速突进，踩掉敌军后方的补给站，整个战线的敌军瞬间断补，组织度和战力暴跌。断补的部队=纸糊的。</p>
                             <ol>
@@ -393,18 +381,15 @@
                                 <li>直奔补给站所在格子</li>
                                 <li>踩掉补给站后敌军前线数十个师立即断补</li>
                             </ol>
-                            <p class="tip">💡 <strong>配合饺子使用：</strong>先断补给站→敌军组织度下降→再用装甲师突破，效果翻倍。</p>
+                            <p class="tip"><strong>TACTICAL NOTE：</strong>先断补给站→敌军组织度下降→再用装甲师突破，效果翻倍。</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- B站UP主推荐 -->
-                <h4 class="section-label">📺 B站优质UP主推荐</h4>
+                <h4 class="section-label">B站优质UP主推荐</h4>
                 <p class="section-desc">数据来源：B站搜索「钢铁雄心4」综合排名前200视频，按UP主累计播放量排序。点击卡片进入UP主空间。</p>
 
-                <div class="uper-grid" id="uperGrid">
-                    <!-- JS动态填充 -->
-                </div>
+                <div class="uper-grid" id="uperGrid"></div>
                 <p class="section-desc" style="margin-top:12px;">数据更新时间：2026年5月 · 来源：B站搜索API</p>
             </div>
         </div>
@@ -413,27 +398,27 @@
     <!-- ====== 游戏介绍 ====== -->
     <section id="features" class="features">
         <div class="container">
-            <h2 class="section-heading">🎮 游戏介绍</h2>
+            <h2 class="section-heading">游戏介绍</h2>
             <div class="feature-section">
                 <div class="feature-text">
                     <h3>动态世界地图</h3>
                     <p>包含超过 1000 个省份的详细世界地图。实时查看各国领土、军队部署和战线变化。支持缩放和快速导航，让你随时掌握全局局势。</p>
                 </div>
-                <div class="feature-image"><div class="img-placeholder">🗺️</div></div>
+                <div class="feature-image"><img src="images/feature_map.webp" alt="动态世界地图" loading="lazy"></div>
             </div>
             <div class="feature-section reverse">
                 <div class="feature-text">
                     <h3>复杂的政治系统</h3>
                     <p>每个国家都有独特的国家焦点树。从民主到法西斯，从共产主义到中立，你的选择决定国家命运。通过焦点解锁特殊能力和资源加成。</p>
                 </div>
-                <div class="feature-image"><div class="img-placeholder">🏛️</div></div>
+                <div class="feature-image"><img src="images/feature_politics.webp" alt="国家焦点树" loading="lazy"></div>
             </div>
             <div class="feature-section">
                 <div class="feature-text">
                     <h3>深度军事模拟</h3>
                     <p>从步兵师到装甲师，从战斗机到航母，丰富的军事单位任你调遣。合理编制部队、研究军事学说，根据地形和天气制定作战计划。</p>
                 </div>
-                <div class="feature-image"><div class="img-placeholder">🪖</div></div>
+                <div class="feature-image"><img src="images/feature_military.webp" alt="军事模拟" loading="lazy"></div>
             </div>
         </div>
     </section>
@@ -441,7 +426,7 @@
     <!-- ====== 下载 ====== -->
     <section id="download" class="download">
         <div class="container">
-            <h2 class="section-heading">📥 游戏下载</h2>
+            <h2 class="section-heading">游戏下载</h2>
             <div class="download-content">
                 <div class="download-info">
                     <h3>钢铁雄心4</h3>
@@ -457,7 +442,7 @@
                 </div>
                 <div class="download-links">
                     <a href="#" class="btn btn-large" id="dlBtn">
-                        <span>📥 立即下载</span>
+                        <span>立即下载</span>
                         <small>高速下载通道</small>
                     </a>
                     <div class="download-alternative">
@@ -467,7 +452,7 @@
                         <a href="#" class="alt-link">BT种子</a>
                     </div>
                     <div class="download-notice">
-                        <p>⚠ 下载前请确保您已购买正版游戏支持开发者</p>
+                        <p>下载前请确保您已购买正版游戏支持开发者</p>
                     </div>
                 </div>
             </div>
@@ -477,7 +462,7 @@
     <!-- ====== 留言 ====== -->
     <section id="discussion" class="discussion">
         <div class="container">
-            <h2 class="section-heading">💬 讨论留言</h2>
+            <h2 class="section-heading">讨论留言</h2>
             <div class="discussion-content">
                 <div class="sidebar">
                     <div class="comment-form">
@@ -507,9 +492,9 @@
                     <div class="message-board-stats">
                         <h3>留言统计</h3>
                         <div class="stats-grid">
-                            <div class="stat-item"><span class="stat-number">128</span><span class="stat-label">总留言</span></div>
-                            <div class="stat-item"><span class="stat-number">45</span><span class="stat-label">今日新帖</span></div>
-                            <div class="stat-item"><span class="stat-number">12</span><span class="stat-label">在线用户</span></div>
+                            <div class="stat-item"><span class="stat-number" id="statTotal">0</span><span class="stat-label">总留言</span></div>
+                            <div class="stat-item"><span class="stat-number" id="statToday">0</span><span class="stat-label">今日新帖</span></div>
+                            <div class="stat-item"><span class="stat-number" id="statReplies">0</span><span class="stat-label">总回复</span></div>
                         </div>
                     </div>
                 </div>
@@ -525,74 +510,10 @@
                             <button class="filter-btn" data-filter="mod">MOD</button>
                         </div>
                     </div>
-                    <div class="pinned-messages">
-                        <div class="pinned-label">📌 置顶</div>
-                        <div class="message-item pinned">
-                            <div class="message-header">
-                                <span class="category-tag guide">攻略</span>
-                                <span class="message-title">【精华】新手入门完全指南 - 从零开始征服世界</span>
-                            </div>
-                            <div class="message-meta"><span>👁 2.3k 浏览</span><span>💬 89 回复</span><span>⏰ 置顶</span></div>
-                        </div>
-                    </div>
                     <div class="messages-list" id="messagesList">
-                        <div class="message-item" data-category="question">
-                            <div class="message-header">
-                                <span class="category-tag question">问答</span>
-                                <span class="message-title">大家觉得哪个国家最适合新手入门？</span>
-                            </div>
-                            <div class="message-preview">我试过德国但难度有点高，总是打不过苏联，求大神指点...</div>
-                            <div class="message-footer">
-                                <div class="author-info"><span class="author-name">🎮 钢铁雄心爱好者</span><span class="post-time">2小时前</span></div>
-                                <div class="message-stats"><span>👍 12</span><span>💬 8</span></div>
-                            </div>
-                        </div>
-                        <div class="message-item" data-category="guide">
-                            <div class="message-header">
-                                <span class="category-tag guide">攻略</span>
-                                <span class="message-title">推荐新手先玩英国或者美国</span>
-                            </div>
-                            <div class="message-preview">资源丰富，地理位置安全。英国体验海空，美国体验暴兵...</div>
-                            <div class="message-footer">
-                                <div class="author-info"><span class="author-name">⚔ 战略大师</span><span class="post-time">5小时前</span></div>
-                                <div class="message-stats"><span>👍 28</span><span>💬 15</span></div>
-                            </div>
-                        </div>
-                        <div class="message-item" data-category="team">
-                            <div class="message-header">
-                                <span class="category-tag team">联机</span>
-                                <span class="message-title">有没有人一起联机？周末开黑</span>
-                            </div>
-                            <div class="message-preview">可以组织一场多人对战，体验世界大战的感觉！时间周末晚上...</div>
-                            <div class="message-footer">
-                                <div class="author-info"><span class="author-name">🇯🇵 旭日东升</span><span class="post-time">昨天</span></div>
-                                <div class="message-stats"><span>👍 15</span><span>💬 23</span></div>
-                            </div>
-                        </div>
-                        <div class="message-item" data-category="guide">
-                            <div class="message-header">
-                                <span class="category-tag guide">攻略</span>
-                                <span class="message-title">分享一个小技巧：早期不要盲目扩张</span>
-                            </div>
-                            <div class="message-preview">先发展工业和科技，打好基础最重要。建议前期优先建设民用工厂...</div>
-                            <div class="message-footer">
-                                <div class="author-info"><span class="author-name">🛡 国防部长</span><span class="post-time">昨天</span></div>
-                                <div class="message-stats"><span>👍 42</span><span>💬 31</span></div>
-                            </div>
-                        </div>
-                        <div class="message-item" data-category="mod">
-                            <div class="message-header">
-                                <span class="category-tag mod">MOD</span>
-                                <span class="message-title">推荐几个好玩的MOD</span>
-                            </div>
-                            <div class="message-preview">1. Kaiserreich - 架空历史 2. Road to 56 - 扩展科技树 3. Expert AI...</div>
-                            <div class="message-footer">
-                                <div class="author-info"><span class="author-name">🔧 MOD达人</span><span class="post-time">2天前</span></div>
-                                <div class="message-stats"><span>👍 56</span><span>💬 19</span></div>
-                            </div>
-                        </div>
+                        <div class="empty-state">暂无留言，快来发表第一条吧</div>
                     </div>
-                    <div class="load-more">
+                    <div class="load-more" id="loadMoreWrap" style="display:none">
                         <button class="btn btn-secondary" id="loadMoreBtn">加载更多留言</button>
                     </div>
                 </div>
@@ -604,23 +525,32 @@
         <div class="container">
             <p>2024 - 2026 钢铁雄心4攻略站 | Hearts of Iron IV 攻略指南</p>
             <p>本网站仅供学习交流，游戏版权归 Paradox Interactive 所有</p>
+            <p class="version">版本 1.0.0</p>
         </div>
     </footer>
 
-    <!-- UP主数据 -->
     <script>
-    // B站爬虫数据 — UP主推荐
     const UPER_DATA = [
-        {"name":"一拳超人OPM","mid":169896163,"sign":"钢4技术流代表，打法硬核","video_count":9,"total_play":22271622,"space_url":"https://space.bilibili.com/169896163"},
-        {"name":"润州镜","mid":2229752,"sign":"钢4攻略高手，捷克单推人","video_count":26,"total_play":10921075,"space_url":"https://space.bilibili.com/2229752"},
-        {"name":"资深小狐狸","mid":3117538,"sign":"钢4新手教学天花板，5小时速通教程","video_count":4,"total_play":9375679,"space_url":"https://space.bilibili.com/3117538"},
-        {"name":"Rookie丶观海","mid":14924348,"sign":"钢4进阶教学UP，内容体系化","video_count":15,"total_play":6836703,"space_url":"https://space.bilibili.com/14924348"},
-        {"name":"望月_Zobev","mid":2212392,"sign":"钢4多元玩法UP，打法有创意","video_count":12,"total_play":5765439,"space_url":"https://space.bilibili.com/2212392"},
-        {"name":"骑士Sworder","mid":28195191,"sign":"钢4高难度战报，单部队极限操作","video_count":2,"total_play":4501660,"space_url":"https://space.bilibili.com/28195191"},
-        {"name":"太阳系公民","mid":25949950,"sign":"钢4实况解说，风格风趣幽默","video_count":3,"total_play":2120037,"space_url":"https://space.bilibili.com/25949950"},
-        {"name":"V-The-War10ck","mid":15896403,"sign":"钢4高质量战报，深度讲解","video_count":1,"total_play":1990672,"space_url":"https://space.bilibili.com/15896403"},
-        {"name":"Atago_official","mid":252079880,"sign":"钢4精彩操作合集","video_count":1,"total_play":1890377,"space_url":"https://space.bilibili.com/252079880"},
-        {"name":"德意志工程师","mid":13817466,"sign":"钢4教程实战两手抓","video_count":5,"total_play":1732132,"space_url":"https://space.bilibili.com/13817466"}
+        {"name":"一拳超人OPM","mid":169896163,"desc":"B站钢4区顶流，以超高速操作和精准战术闻名。主打极限速通、高难度国家挑战，视频节奏极快。擅长在极短时间内完成看似不可能的战役目标。讲解干练无废话，适合有基础后追求效率的玩家。","video_count":9,"total_play":22271622,"avatar":"avatars/mid_169896163.jpg"},
+        {"name":"润州镜","mid":2229752,"desc":"钢4区最高产UP主之一（26个视频），以捷克等东欧小国破局见长。打法稳健务实，善用有限资源最大化战力，文字解说细致入微。覆盖新手到进阶全阶段，跟着步骤做就能通关，是\"小国逆袭\"流派的标杆人物。","video_count":26,"total_play":10921075,"avatar":"avatars/mid_2229752.jpg"},
+        {"name":"资深小狐狸","mid":3117538,"desc":"钢4教学区天花板级UP主，单条5小时完整新手教程播放量超75万。风格亲和耐心，倡导\"工科式\"游戏理解——先搞懂机制原理（供应链、编制逻辑），再谈具体操作。是纯新手入门的不二之选。","video_count":4,"total_play":9375679,"avatar":"avatars/mid_3117538.jpg"},
+        {"name":"Rookie丶观海","mid":14924348,"desc":"钢4体系化教学代表，15个视频形成完整教学链。每期聚焦单一主题（空军、海军、补给、编制等），由浅入深层层递进。讲解严谨、数据翔实，适合想系统学习而非零散看视频的进阶玩家。","video_count":15,"total_play":6836703,"avatar":"avatars/mid_14924348.jpg"},
+        {"name":"望月_Zobev","mid":2212392,"desc":"钢4创意流代表UP主，不拘泥于固定套路和常规玩法。擅长非历史走向、奇葩编制组合、极限条件挑战。视频娱乐性和观赏性强，打法充满想象力，适合已有基础想拓宽战术思路的玩家。","video_count":12,"total_play":5765439,"avatar":"avatars/mid_2212392.jpg"},
+        {"name":"骑士Sworder","mid":28195191,"desc":"视频不多但部部精品，\"质胜于量\"的典型。以极低伤亡比完成高难度战报为最大特色，微操水平堪称顶尖。擅长单部队极限拉扯、小兵团歼灭大战力敌军，追求完美战损比。","video_count":2,"total_play":4501660,"avatar":"avatars/mid_28195191.jpg"},
+        {"name":"太阳系公民","mid":25949950,"desc":"钢4实况解说型UP主，视频风格轻松幽默，边打边聊观赏性强。不刻意追求极限操作和完美战损比，更注重讲好每一局的\"故事\"。节奏舒缓适合下饭观看，在轻松氛围中也能学到实用技巧。","video_count":3,"total_play":2120037,"avatar":"avatars/mid_25949950.jpg"},
+        {"name":"V-The-War10ck","mid":15896403,"desc":"单视频播放超200万的硬核战报制作者。视频制作质量极高，剪辑精细画面精美，解说深度到位。虽然产量极低，但每期都经过长时间精心打磨。适合追求内容深度的硬核玩家。","video_count":1,"total_play":1990672,"avatar":"avatars/mid_15896403.jpg"},
+        {"name":"德意志工程师","mid":13817466,"desc":"钢4教程与实战并重的UP主。视频内容兼顾新手入门教学和进阶实战战报，风格朴实无华但步骤异常清晰。慢条斯理的讲解节奏给观众充足的时间消化每个操作细节，适合边看边跟练的学习型玩家。","video_count":5,"total_play":1732132,"avatar":"avatars/mid_13817466.jpg"},
+        {"name":"寒霜骑士Arki","mid":322219804,"desc":"钢4战术向UP主，单视频播放量近170万。擅长以独特视角切入经典战役，视频制作精良、节奏明快。内容兼具观赏性和实战参考价值，是快速了解高阶打法的窗口。","video_count":1,"total_play":1688278,"avatar":"avatars/mid_322219804.jpg"},
+        {"name":"净水WhiteH2O","mid":1915839316,"desc":"钢4新生代UP主，首条视频即破百万播放。视角新颖，擅长从小国或冷门阵营出发挖掘非主流玩法。视频剪辑干净流畅，解说思路清晰，是新锐创作者中的潜力股。","video_count":1,"total_play":1281680,"avatar":"avatars/mid_1915839316.jpg"},
+        {"name":"Attack丶叶菠萝","mid":39566146,"desc":"钢4架空历史流代表UP主，专做\"如果中国开局就统一\"等爽文向战报。视频节奏快，剧情紧凑，适合喜欢\"看爽\"的玩家。4个视频均为高播放量，娱乐性和脑洞兼具。","video_count":4,"total_play":1151999,"avatar":"avatars/mid_39566146.jpg"},
+        {"name":"小末Jess","mid":64341434,"desc":"钢4剧情向UP主，以沉浸式战报为核心特色。视频如电影般讲述一场战争的始末，注重历史氛围的营造。适合喜欢听\"故事\"而不是看数据的休闲玩家。","video_count":2,"total_play":915403,"avatar":"avatars/mid_64341434.jpg"},
+        {"name":"_高加索","mid":438997833,"desc":"钢4硬核战报UP主，以高加索/苏联方向见长。视频内容偏重深度分析和数据对比，适合对东线战场有特别兴趣的玩家。风格严肃认真，信息密度高。","video_count":2,"total_play":709285,"avatar":"avatars/mid_438997833.jpg"},
+        {"name":"海口唱诗aper","mid":1288663494,"desc":"钢4趣味向UP主，3个视频涵盖不同类型的玩法展示。风格轻松活泼，擅长用通俗易懂的方式讲解复杂机制。受众面广，适合各阶段的玩家观看。","video_count":3,"total_play":664825,"avatar":"avatars/mid_1288663494.jpg"},
+        {"name":"小狮子大头头","mid":8379755,"desc":"钢4老牌UP主，深耕钢4内容多年。视频风格稳健，以传统战报和攻略解析为主。打法偏向经典大兵团作战，是传统派玩家的可靠参考。","video_count":2,"total_play":650092,"avatar":"avatars/mid_8379755.jpg"},
+        {"name":"日落还yyy","mid":382121941,"desc":"钢4实战教学UP主，单视频表现突出。以实际战役推演为核心，用实操代替理论讲解。适合喜欢\"跟着视频一步步打\"的学习型玩家。","video_count":1,"total_play":635915,"avatar":"avatars/mid_382121941.jpg"},
+        {"name":"奥皇0vo","mid":13294231,"desc":"钢4奥匈帝国方向专精UP主，视频以奥匈/中欧战场为核心。对奥匈国策线和多民族国家机制有深入研究，是中欧玩法爱好者的不二选择。","video_count":3,"total_play":614156,"avatar":"avatars/mid_13294231.jpg"},
+        {"name":"墨翟","mid":286885018,"desc":"钢4深度解析型UP主，3个视频覆盖不同主题。内容偏重历史还原和机制拆解，讲解逻辑严密。适合喜欢\"知其然更知其所以然\"的研究型玩家。","video_count":3,"total_play":567895,"avatar":"avatars/mid_286885018.jpg"},
+        {"name":"Atago_official","mid":252079880,"desc":"钢4高燃操作合集型UP主，单视频近190万播放。以精彩瞬间混剪和震撼画面见长，适合想看华丽操作和高光时刻的玩家。账号可能已更名，建议通过链接访问。","video_count":1,"total_play":1890377,"avatar":""}
     ];
     </script>
     <script src="script.js"></script>

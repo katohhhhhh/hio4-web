@@ -1,0 +1,63 @@
+L15: '\u2694\ufe0f' -> <span class="logo-icon">⚔️</span>
+L39: '\U0001f4d6' -> <a href="#tutorial" class="btn btn-primary">📖 开始学习</a>
+L40: '\U0001f9e0' -> <a href="#zhuge" class="btn btn-accent">🧠 高手进阶</a>
+L54: '\U0001f4da' -> <h2 class="section-heading">📚 从零到精通</h2>
+L60: '\U0001f331' -> <span class="block-icon">🌱</span>
+L69: '\u2328' -> <h4 class="card-title">⌨ 常用键盘快捷键一览</h4>
+L106: '\U0001f5a5' -> <h4 class="card-title">🖥 游戏界面按钮速查</h4>
+L138: '\U0001f4d0' -> <h4 class="card-title">📐 必须理解的 5 个数值</h4>
+L148: '\u26a0' -> <h4 class="card-title">⚠ 新手最常犯的 5 个错误</h4>
+L150: '\u274c' -> <li>❌ 一直5倍速跑时间，科研/国策/焦点全错过</li>
+L151: '\u274c' -> <li>❌ 不画战线就直接右键进攻，不吃计划加成</li>
+L152: '\u274c' -> <li>❌ 疯狂爆兵但不造军工，枪都配不齐</li>
+L153: '\u274c' -> <li>❌ 所有部队堆在一个格子，补给瞬间崩盘</li>
+L154: '\u274c' -> <li>❌ 不看制空权就开打，被AI飞机舔爆</li>
+L163: '\u26a1' -> <span class="block-icon">⚡</span>
+L172: '\U0001f4cb' -> <h4 class="card-title">📋 标准开局流程（以德国1936为例）</h4>
+L236: '\U0001f6e1' -> <h4 class="card-title">🛡 基础编制推荐</h4>
+L252: '\U0001f3af' -> <h4 class="card-title">🎯 基础作战流程</h4>
+L267: '\U0001f1e9\U0001f1ea' -> <h4 class="card-title">🇩🇪 德国 — 进攻流首选</h4>
+L269: '\u2605\u2605\u2605\u2605\u2605' -> <span class="tag">推荐指数 ★★★★★</span>
+L272: '\U0001f1ec\U0001f1e7' -> <h4 class="card-title">🇬🇧 英国 — 海空流首选</h4>
+L274: '\u2605\u2605\u2605\u2605\u2606' -> <span class="tag">推荐指数 ★★★★☆</span>
+L277: '\U0001f1fa\U0001f1f8' -> <h4 class="card-title">🇺🇸 美国 — 后期流首选</h4>
+L279: '\u2605\u2605\u2605\u2605\u2606' -> <span class="tag">推荐指数 ★★★★☆</span>
+L287: '\U0001f9e0' -> <span class="block-icon">🧠</span>
+L295: '\U0001f3af' -> <h4 class="section-label">🎯 高级战术</h4>
+L300: '\U0001f3dd' -> <h4 class="card-title">🏝 守港吃兵（港口钓鱼）</h4>
+L311: '\U0001f4a1' -> <p class="tip">💡 <strong>进阶：</strong>配合潜艇在港口外伏击运输船，连船带人一起消灭。此招对日本、英国、意大利等岛国/半岛 AI 尤其好用。</p>
+L318: '\U0001f95f' -> <h4 class="card-title">🥟 连环饺子（包围歼灭）</h4>
+L329: '\U0001f4a1' -> <p class="tip">💡 <strong>关键点：</strong>装甲师速度要快（>8km/h），否则AI会跑掉。推荐轻坦/中坦+摩托化步兵组合。</p>
+L336: '\U0001faa4' -> <h4 class="card-title">🪤 诱敌深入（故意放缺口）</h4>
+L347: '\U0001f4a1' -> <p class="tip">💡 <strong>配合守港使用效果更佳：</strong>故意让AI占领一个港口，等AI主力登陆后再切断其陆上补给线，配合海军封锁海上补给。</p>
+L354: '\U0001fa82' -> <h4 class="card-title">🪂 空降斩首（伞兵速胜）</h4>
+L364: '\U0001f4a1' -> <p class="tip">💡 <strong>典型应用：</strong>德国打法国，伞兵空降巴黎+海军陆战队登陆诺曼底，法国几天投降。打荷兰、比利时同理。</p>
+L371: '\U0001fa96' -> <h4 class="card-title">🪖 骗线战术（拉扯AI部队）</h4>
+L381: '\U0001f4a1' -> <p class="tip">💡 <strong>配合假前线：</strong>甚至在A区域画假的进攻箭头（但不实际进攻），让AI更加确信你要打这里。</p>
+L388: '\U0001f682' -> <h4 class="card-title">🚂 补给站狙击（断补战术）</h4>
+L398: '\U0001f4a1' -> <p class="tip">💡 <strong>配合饺子使用：</strong>先断补给站→敌军组织度下降→再用装甲师突破，效果翻倍。</p>
+L404: '\U0001f4fa' -> <h4 class="section-label">📺 B站优质UP主推荐</h4>
+L418: '\U0001f3ae' -> <h2 class="section-heading">🎮 游戏介绍</h2>
+L446: '\U0001f4e5' -> <h2 class="section-heading">📥 游戏下载</h2>
+L462: '\U0001f4e5' -> <span>📥 立即下载</span>
+L472: '\u26a0' -> <p>⚠ 下载前请确保您已购买正版游戏支持开发者</p>
+L482: '\U0001f4ac' -> <h2 class="section-heading">💬 讨论留言</h2>
+L531: '\U0001f4cc' -> <div class="pinned-label">📌 置顶</div>
+L537: '\U0001f441' -> <div class="message-meta"><span>👁 2.3k 浏览</span><span>💬 89 回复</span><span>⏰ 置顶</span></div>
+L537: '\U0001f4ac' -> <div class="message-meta"><span>👁 2.3k 浏览</span><span>💬 89 回复</span><span>⏰ 置顶</span></div>
+L537: '\u23f0' -> <div class="message-meta"><span>👁 2.3k 浏览</span><span>💬 89 回复</span><span>⏰ 置顶</span></div>
+L548: '\U0001f3ae' -> <div class="author-info"><span class="author-name">🎮 钢铁雄心爱好者</span><span class="post-time">2小时前</span></div>
+L549: '\U0001f44d' -> <div class="message-stats"><span>👍 12</span><span>💬 8</span></div>
+L549: '\U0001f4ac' -> <div class="message-stats"><span>👍 12</span><span>💬 8</span></div>
+L559: '\u2694' -> <div class="author-info"><span class="author-name">⚔ 战略大师</span><span class="post-time">5小时前</span></div>
+L560: '\U0001f44d' -> <div class="message-stats"><span>👍 28</span><span>💬 15</span></div>
+L560: '\U0001f4ac' -> <div class="message-stats"><span>👍 28</span><span>💬 15</span></div>
+L570: '\U0001f1ef\U0001f1f5' -> <div class="author-info"><span class="author-name">🇯🇵 旭日东升</span><span class="post-time">昨天</span></div>
+L571: '\U0001f44d' -> <div class="message-stats"><span>👍 15</span><span>💬 23</span></div>
+L571: '\U0001f4ac' -> <div class="message-stats"><span>👍 15</span><span>💬 23</span></div>
+L581: '\U0001f6e1' -> <div class="author-info"><span class="author-name">🛡 国防部长</span><span class="post-time">昨天</span></div>
+L582: '\U0001f44d' -> <div class="message-stats"><span>👍 42</span><span>💬 31</span></div>
+L582: '\U0001f4ac' -> <div class="message-stats"><span>👍 42</span><span>💬 31</span></div>
+L592: '\U0001f527' -> <div class="author-info"><span class="author-name">🔧 MOD达人</span><span class="post-time">2天前</span></div>
+L593: '\U0001f44d' -> <div class="message-stats"><span>👍 56</span><span>💬 19</span></div>
+L593: '\U0001f4ac' -> <div class="message-stats"><span>👍 56</span><span>💬 19</span></div>
