@@ -6,6 +6,7 @@
     <title>钢铁雄心4 攻略站 — 从入门到精通</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -463,61 +464,8 @@
     <section id="discussion" class="discussion">
         <div class="container">
             <h2 class="section-heading">讨论留言</h2>
-            <div class="discussion-content">
-                <div class="sidebar">
-                    <div class="comment-form">
-                        <h3>发表留言</h3>
-                        <form id="commentForm">
-                            <div class="form-group">
-                                <select id="commentCategory" class="form-control">
-                                    <option value="general">综合讨论</option>
-                                    <option value="guide">攻略心得</option>
-                                    <option value="question">求助问答</option>
-                                    <option value="team">组队联机</option>
-                                    <option value="mod">MOD分享</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="username" placeholder="您的昵称" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="commentTitle" placeholder="留言标题" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <textarea id="commentText" placeholder="分享您的游戏心得或问题..." rows="4" class="form-control" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">发表留言</button>
-                        </form>
-                    </div>
-                    <div class="message-board-stats">
-                        <h3>留言统计</h3>
-                        <div class="stats-grid">
-                            <div class="stat-item"><span class="stat-number" id="statTotal">0</span><span class="stat-label">总留言</span></div>
-                            <div class="stat-item"><span class="stat-number" id="statToday">0</span><span class="stat-label">今日新帖</span></div>
-                            <div class="stat-item"><span class="stat-number" id="statReplies">0</span><span class="stat-label">总回复</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="message-board">
-                    <div class="board-header">
-                        <h3>留言板</h3>
-                        <div class="filter-tabs">
-                            <button class="filter-btn active" data-filter="all">全部</button>
-                            <button class="filter-btn" data-filter="general">综合</button>
-                            <button class="filter-btn" data-filter="guide">攻略</button>
-                            <button class="filter-btn" data-filter="question">问答</button>
-                            <button class="filter-btn" data-filter="team">联机</button>
-                            <button class="filter-btn" data-filter="mod">MOD</button>
-                        </div>
-                    </div>
-                    <div class="messages-list" id="messagesList">
-                        <div class="empty-state">暂无留言，快来发表第一条吧</div>
-                    </div>
-                    <div class="load-more" id="loadMoreWrap" style="display:none">
-                        <button class="btn btn-secondary" id="loadMoreBtn">加载更多留言</button>
-                    </div>
-                </div>
-            </div>
+            <p class="section-desc">畅所欲言，无需登录，输入昵称即可留言</p>
+            <div id="waline" class="waline-container"></div>
         </div>
     </section>
 
@@ -531,27 +479,43 @@
 
     <script>
     const UPER_DATA = [
-        {"name":"一拳超人OPM","mid":169896163,"desc":"B站钢4区顶流，以超高速操作和精准战术闻名。主打极限速通、高难度国家挑战，视频节奏极快。擅长在极短时间内完成看似不可能的战役目标。讲解干练无废话，适合有基础后追求效率的玩家。","video_count":9,"total_play":22271622,"avatar":"avatars/mid_169896163.jpg"},
-        {"name":"润州镜","mid":2229752,"desc":"钢4区最高产UP主之一（26个视频），以捷克等东欧小国破局见长。打法稳健务实，善用有限资源最大化战力，文字解说细致入微。覆盖新手到进阶全阶段，跟着步骤做就能通关，是\"小国逆袭\"流派的标杆人物。","video_count":26,"total_play":10921075,"avatar":"avatars/mid_2229752.jpg"},
-        {"name":"资深小狐狸","mid":3117538,"desc":"钢4教学区天花板级UP主，单条5小时完整新手教程播放量超75万。风格亲和耐心，倡导\"工科式\"游戏理解——先搞懂机制原理（供应链、编制逻辑），再谈具体操作。是纯新手入门的不二之选。","video_count":4,"total_play":9375679,"avatar":"avatars/mid_3117538.jpg"},
-        {"name":"Rookie丶观海","mid":14924348,"desc":"钢4体系化教学代表，15个视频形成完整教学链。每期聚焦单一主题（空军、海军、补给、编制等），由浅入深层层递进。讲解严谨、数据翔实，适合想系统学习而非零散看视频的进阶玩家。","video_count":15,"total_play":6836703,"avatar":"avatars/mid_14924348.jpg"},
-        {"name":"望月_Zobev","mid":2212392,"desc":"钢4创意流代表UP主，不拘泥于固定套路和常规玩法。擅长非历史走向、奇葩编制组合、极限条件挑战。视频娱乐性和观赏性强，打法充满想象力，适合已有基础想拓宽战术思路的玩家。","video_count":12,"total_play":5765439,"avatar":"avatars/mid_2212392.jpg"},
-        {"name":"骑士Sworder","mid":28195191,"desc":"视频不多但部部精品，\"质胜于量\"的典型。以极低伤亡比完成高难度战报为最大特色，微操水平堪称顶尖。擅长单部队极限拉扯、小兵团歼灭大战力敌军，追求完美战损比。","video_count":2,"total_play":4501660,"avatar":"avatars/mid_28195191.jpg"},
-        {"name":"太阳系公民","mid":25949950,"desc":"钢4实况解说型UP主，视频风格轻松幽默，边打边聊观赏性强。不刻意追求极限操作和完美战损比，更注重讲好每一局的\"故事\"。节奏舒缓适合下饭观看，在轻松氛围中也能学到实用技巧。","video_count":3,"total_play":2120037,"avatar":"avatars/mid_25949950.jpg"},
-        {"name":"V-The-War10ck","mid":15896403,"desc":"单视频播放超200万的硬核战报制作者。视频制作质量极高，剪辑精细画面精美，解说深度到位。虽然产量极低，但每期都经过长时间精心打磨。适合追求内容深度的硬核玩家。","video_count":1,"total_play":1990672,"avatar":"avatars/mid_15896403.jpg"},
-        {"name":"德意志工程师","mid":13817466,"desc":"钢4教程与实战并重的UP主。视频内容兼顾新手入门教学和进阶实战战报，风格朴实无华但步骤异常清晰。慢条斯理的讲解节奏给观众充足的时间消化每个操作细节，适合边看边跟练的学习型玩家。","video_count":5,"total_play":1732132,"avatar":"avatars/mid_13817466.jpg"},
-        {"name":"寒霜骑士Arki","mid":322219804,"desc":"钢4战术向UP主，单视频播放量近170万。擅长以独特视角切入经典战役，视频制作精良、节奏明快。内容兼具观赏性和实战参考价值，是快速了解高阶打法的窗口。","video_count":1,"total_play":1688278,"avatar":"avatars/mid_322219804.jpg"},
-        {"name":"净水WhiteH2O","mid":1915839316,"desc":"钢4新生代UP主，首条视频即破百万播放。视角新颖，擅长从小国或冷门阵营出发挖掘非主流玩法。视频剪辑干净流畅，解说思路清晰，是新锐创作者中的潜力股。","video_count":1,"total_play":1281680,"avatar":"avatars/mid_1915839316.jpg"},
-        {"name":"Attack丶叶菠萝","mid":39566146,"desc":"钢4架空历史流代表UP主，专做\"如果中国开局就统一\"等爽文向战报。视频节奏快，剧情紧凑，适合喜欢\"看爽\"的玩家。4个视频均为高播放量，娱乐性和脑洞兼具。","video_count":4,"total_play":1151999,"avatar":"avatars/mid_39566146.jpg"},
-        {"name":"小末Jess","mid":64341434,"desc":"钢4剧情向UP主，以沉浸式战报为核心特色。视频如电影般讲述一场战争的始末，注重历史氛围的营造。适合喜欢听\"故事\"而不是看数据的休闲玩家。","video_count":2,"total_play":915403,"avatar":"avatars/mid_64341434.jpg"},
-        {"name":"_高加索","mid":438997833,"desc":"钢4硬核战报UP主，以高加索/苏联方向见长。视频内容偏重深度分析和数据对比，适合对东线战场有特别兴趣的玩家。风格严肃认真，信息密度高。","video_count":2,"total_play":709285,"avatar":"avatars/mid_438997833.jpg"},
-        {"name":"海口唱诗aper","mid":1288663494,"desc":"钢4趣味向UP主，3个视频涵盖不同类型的玩法展示。风格轻松活泼，擅长用通俗易懂的方式讲解复杂机制。受众面广，适合各阶段的玩家观看。","video_count":3,"total_play":664825,"avatar":"avatars/mid_1288663494.jpg"},
-        {"name":"小狮子大头头","mid":8379755,"desc":"钢4老牌UP主，深耕钢4内容多年。视频风格稳健，以传统战报和攻略解析为主。打法偏向经典大兵团作战，是传统派玩家的可靠参考。","video_count":2,"total_play":650092,"avatar":"avatars/mid_8379755.jpg"},
-        {"name":"日落还yyy","mid":382121941,"desc":"钢4实战教学UP主，单视频表现突出。以实际战役推演为核心，用实操代替理论讲解。适合喜欢\"跟着视频一步步打\"的学习型玩家。","video_count":1,"total_play":635915,"avatar":"avatars/mid_382121941.jpg"},
-        {"name":"奥皇0vo","mid":13294231,"desc":"钢4奥匈帝国方向专精UP主，视频以奥匈/中欧战场为核心。对奥匈国策线和多民族国家机制有深入研究，是中欧玩法爱好者的不二选择。","video_count":3,"total_play":614156,"avatar":"avatars/mid_13294231.jpg"},
-        {"name":"墨翟","mid":286885018,"desc":"钢4深度解析型UP主，3个视频覆盖不同主题。内容偏重历史还原和机制拆解，讲解逻辑严密。适合喜欢\"知其然更知其所以然\"的研究型玩家。","video_count":3,"total_play":567895,"avatar":"avatars/mid_286885018.jpg"},
-        {"name":"Atago_official","mid":252079880,"desc":"钢4高燃操作合集型UP主，单视频近190万播放。以精彩瞬间混剪和震撼画面见长，适合想看华丽操作和高光时刻的玩家。账号可能已更名，建议通过链接访问。","video_count":1,"total_play":1890377,"avatar":""}
+        {"name":"德意志工程师","mid":13817466,"desc":"钢4教程与实战并重，风格朴实但步骤异常清晰。慢节奏讲解让观众有充足时间消化每个操作细节，适合边看边跟练的学习型玩家。","follower":1077699,"avatar":"avatars/mid_13817466.jpg"},
+        {"name":"资深小狐狸","mid":3117538,"desc":"钢4教学区天花板，单条5小时完整新手教程播放超75万。倡导\"工科式\"游戏理解——先搞懂机制原理再谈操作。纯新手入门不二之选。","follower":1028713,"avatar":"avatars/mid_3117538.jpg"},
+        {"name":"一拳超人OPM","mid":169896163,"desc":"B站钢4区顶流，超高速操作和精准战术闻名。主打极限速通、高难度国家挑战，视频节奏极快。讲解干练无废话，适合追求效率的进阶玩家。","follower":1002716,"avatar":"avatars/mid_169896163.jpg"},
+        {"name":"润州镜","mid":2229752,"desc":"钢4区最高产UP主之一，以捷克等东欧小国破局见长。打法稳健务实，善用有限资源最大化战力。覆盖新手到进阶全阶段，\"小国逆袭\"流派标杆。","follower":595627,"avatar":"avatars/mid_2229752.jpg"},
+        {"name":"Rookie丶观海","mid":14924348,"desc":"钢4体系化教学代表，每期聚焦单一主题（空军、海军、补给等），由浅入深层层递进。讲解严谨、数据翔实，适合系统学习的进阶玩家。","follower":479308,"avatar":"avatars/mid_14924348.jpg"},
+        {"name":"骑士Sworder","mid":28195191,"desc":"\"质胜于量\"的典型。以极低伤亡比完成高难度战报为最大特色，微操顶尖。擅长单部队极限拉扯、小兵团歼灭大战力敌军，追求完美战损比。","follower":440586,"avatar":"avatars/mid_28195191.jpg"},
+        {"name":"净水WhiteH2O","mid":1915839316,"desc":"钢4新生代UP主，首条视频即破百万播放。视角新颖，擅长从小国或冷门阵营出发挖掘非主流玩法。剪辑干净流畅，新锐创作者中的潜力股。","follower":405284,"avatar":"avatars/mid_1915839316.jpg"},
+        {"name":"太阳系公民","mid":25949950,"desc":"钢4实况解说型UP主，视频风格轻松幽默，边打边聊观赏性强。注重讲好每一局的\"故事\"，节奏舒缓，在轻松氛围中也能学到实用技巧。","follower":253129,"avatar":"avatars/mid_25949950.jpg"},
+        {"name":"奥皇0vo","mid":13294231,"desc":"钢4奥匈帝国方向专精UP主，对奥匈国策线和多民族国家机制有深入研究。中欧玩法爱好者的不二选择，内容专业且深入。","follower":215214,"avatar":"avatars/mid_13294231.jpg"},
+        {"name":"V-The-War10ck","mid":15896403,"desc":"单视频播放超200万的硬核战报制作者。视频制作质量极高，剪辑精细画面精美，解说深度到位。每期精心打磨，适合追求内容深度的硬核玩家。","follower":209868,"avatar":"avatars/mid_15896403.jpg"},
+        {"name":"小末Jess","mid":64341434,"desc":"钢4剧情向UP主，以沉浸式战报为核心特色。视频如电影般讲述一场战争的始末，注重历史氛围的营造。适合喜欢听\"故事\"的休闲玩家。","follower":207235,"avatar":"avatars/mid_64341434.jpg"},
+        {"name":"墨翟","mid":286885018,"desc":"钢4深度解析型UP主，内容偏重历史还原和机制拆解，讲解逻辑严密。适合喜欢\"知其然更知其所以然\"的研究型玩家。","follower":148576,"avatar":"avatars/mid_286885018.jpg"},
+        {"name":"望月_Zobev","mid":2212392,"desc":"钢4创意流代表UP主，不拘泥于固定套路。擅长非历史走向、奇葩编制组合、极限条件挑战。打法充满想象力，适合拓宽战术思路的玩家。","follower":136724,"avatar":"avatars/mid_2212392.jpg"},
+        {"name":"_高加索","mid":438997833,"desc":"钢4硬核战报UP主，以高加索/苏联方向见长。视频偏重深度分析和数据对比，风格严肃认真，信息密度高。适合对东线战场有特别兴趣的玩家。","follower":119692,"avatar":"avatars/mid_438997833.jpg"},
+        {"name":"海口唱诗aper","mid":1288663494,"desc":"钢4趣味向UP主，风格轻松活泼，擅长用通俗易懂的方式讲解复杂机制。受众面广，适合各阶段玩家观看学习。","follower":91926,"avatar":"avatars/mid_1288663494.jpg"},
+        {"name":"Attack丶叶菠萝","mid":39566146,"desc":"钢4架空历史流代表UP主，专做\"如果中国开局就统一\"等爽文向战报。视频节奏快、剧情紧凑，娱乐性和脑洞兼具。","follower":81675,"avatar":"avatars/mid_39566146.jpg"},
+        {"name":"日落还yyy","mid":382121941,"desc":"钢4实战教学UP主，以实际战役推演为核心，用实操代替理论讲解。适合喜欢\"跟着视频一步步打\"的学习型玩家。","follower":18331,"avatar":"avatars/mid_382121941.jpg"},
+        {"name":"寒霜骑士Arki","mid":322219804,"desc":"钢4战术向UP主，擅长以独特视角切入经典战役，视频制作精良、节奏明快。内容兼具观赏性和实战参考价值。","follower":17914,"avatar":"avatars/mid_322219804.jpg"},
+        {"name":"小狮子大头头","mid":8379755,"desc":"钢4老牌UP主，深耕钢4内容多年。视频风格稳健，以传统战报和攻略解析为主。打法偏向经典大兵团作战，传统派玩家的可靠参考。","follower":12873,"avatar":"avatars/mid_8379755.jpg"},
+        {"name":"Atago_official","mid":252079880,"desc":"钢4高燃操作合集型UP主。以精彩瞬间混剪和震撼画面见长，适合想看华丽操作和高光时刻的玩家。账号可能已更名，建议通过链接访问。","follower":411,"avatar":""}
     ];
+    </script>
+    <script type="module">
+        import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.mjs';
+        init({
+            el: '#waline',
+            serverURL: 'https://YOUR-SERVER.vercel.app',
+            lang: 'zh-CN',
+            dark: true,
+            requiredMeta: ['nick'],
+            pageSize: 10,
+            imageUploader: false,
+            emoji: [
+                'https://unpkg.com/@waline/emojis@1.2.0/weibo',
+                'https://unpkg.com/@waline/emojis@1.2.0/bmoji',
+            ],
+        });
     </script>
     <script src="script.js"></script>
 </body>
