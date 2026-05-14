@@ -568,3 +568,7 @@ kbd {
     .uper-card { padding: 12px; }
     .alt-link { display: block; margin-bottom: 6px; }
 }
+
+/* ===== Waline: hide email & URL fields ===== */
+.waline-container .wl-meta-item:nth-child(2),
+.waline-container .wl-meta-item:nth-child(3) { display: none; }
