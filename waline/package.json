@@ -1,8 +1,7 @@
 {
   "name": "waline-hio4",
   "private": true,
-  "type": "module",
   "dependencies": {
-    "@waline/vercel": "^1.39.3"
+    "pg": "^8.14.0"
   }
 }
