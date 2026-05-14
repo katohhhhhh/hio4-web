@@ -504,6 +504,31 @@
     </script>
     <script type="module">
         import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+
+        // --- localStorage guest identity ---
+        const STORAGE_KEY = 'hio4_guest';
+        let guest = localStorage.getItem(STORAGE_KEY);
+        if (!guest) {
+            guest = 'zhanfan' + Math.floor(Math.random() * 100000);
+            localStorage.setItem(STORAGE_KEY, guest);
+        }
+
+        // Fill nick input with guest name when Waline form appears
+        function fillNick() {
+            const inputs = document.querySelectorAll('#waline .wl-meta-item input');
+            const nickInput = inputs[0];
+            if (nickInput && !nickInput._hio4Set) {
+                nickInput.value = guest;
+                nickInput._hio4Set = true;
+                // Sync changes back to localStorage
+                nickInput.addEventListener('change', () => {
+                    if (nickInput.value.trim()) {
+                        localStorage.setItem(STORAGE_KEY, nickInput.value.trim());
+                    }
+                });
+            }
+        }
+
         init({
             el: '#waline',
             serverURL: 'https://app.hio42.asia',
@@ -517,6 +542,11 @@
                 'https://unpkg.com/@waline/emojis@1.2.0/bmoji',
             ],
         });
+
+        // Observe Waline DOM for form appearance
+        new MutationObserver(() => {
+            fillNick();
+        }).observe(document.getElementById('waline'), { childList: true, subtree: true });
     </script>
     <script src="script.js"></script>
 </body>
