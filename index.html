@@ -6,7 +6,6 @@
     <title>钢铁雄心4 攻略站 — 从入门到精通</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <script async src="https://app.hio42.asia/script.js" data-website-id="eccb3620-00c6-458b-bff3-3eb7e3d64746"></script>
 </head>
@@ -21,7 +20,6 @@
                 <a href="#tutorial" class="nav-link">教程</a>
                 <a href="#features" class="nav-link">游戏介绍</a>
                 <a href="#download" class="nav-link">下载</a>
-                <a href="#discussion" class="nav-link">讨论</a>
             </nav>
             <button class="menu-toggle" id="menuToggle" aria-label="NAV">
                 <span></span><span></span><span></span>
@@ -461,15 +459,6 @@
         </div>
     </section>
 
-    <!-- ====== 讨论 ====== -->
-    <section id="discussion" class="discussion">
-        <div class="container">
-            <h2 class="section-heading">讨论区</h2>
-            <p class="section-desc">畅所欲言，无需登录，输入昵称即可参与讨论</p>
-            <div id="waline" class="waline-container"></div>
-        </div>
-    </section>
-
     <footer class="footer">
         <div class="container">
             <p>2024 - 2026 钢铁雄心4攻略站 | Hearts of Iron IV 攻略指南</p>
@@ -501,52 +490,6 @@
         {"name":"小狮子大头头","mid":8379755,"desc":"钢4老牌UP主，深耕钢4内容多年。视频风格稳健，以传统战报和攻略解析为主。打法偏向经典大兵团作战，传统派玩家的可靠参考。","follower":12873,"avatar":"avatars/mid_8379755.jpg"},
         {"name":"Atago_official","mid":252079880,"desc":"钢4高燃操作合集型UP主。以精彩瞬间混剪和震撼画面见长，适合想看华丽操作和高光时刻的玩家。账号可能已更名，建议通过链接访问。","follower":411,"avatar":""}
     ];
-    </script>
-    <script type="module">
-        import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
-
-        // --- localStorage guest identity ---
-        const STORAGE_KEY = 'hio4_guest';
-        let guest = localStorage.getItem(STORAGE_KEY);
-        if (!guest) {
-            guest = 'zhanfan' + Math.floor(Math.random() * 100000);
-            localStorage.setItem(STORAGE_KEY, guest);
-        }
-
-        // Fill nick input with guest name when Waline form appears
-        function fillNick() {
-            const inputs = document.querySelectorAll('#waline .wl-meta-item input');
-            const nickInput = inputs[0];
-            if (nickInput && !nickInput._hio4Set) {
-                nickInput.value = guest;
-                nickInput._hio4Set = true;
-                // Sync changes back to localStorage
-                nickInput.addEventListener('change', () => {
-                    if (nickInput.value.trim()) {
-                        localStorage.setItem(STORAGE_KEY, nickInput.value.trim());
-                    }
-                });
-            }
-        }
-
-        init({
-            el: '#waline',
-            serverURL: 'https://app.hio42.asia',
-            lang: 'zh-CN',
-            dark: true,
-            requiredMeta: [],
-            pageSize: 10,
-            imageUploader: false,
-            emoji: [
-                'https://unpkg.com/@waline/emojis@1.2.0/weibo',
-                'https://unpkg.com/@waline/emojis@1.2.0/bmoji',
-            ],
-        });
-
-        // Observe Waline DOM for form appearance
-        new MutationObserver(() => {
-            fillNick();
-        }).observe(document.getElementById('waline'), { childList: true, subtree: true });
     </script>
     <script src="script.js"></script>
 </body>

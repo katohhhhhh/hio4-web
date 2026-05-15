@@ -1,7 +1,0 @@
-{
-  "name": "waline-hio4",
-  "private": true,
-  "dependencies": {
-    "pg": "^8.14.0"
-  }
-}
