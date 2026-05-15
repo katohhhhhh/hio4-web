@@ -260,9 +260,8 @@ async function handlePostComment(body, req, res) {
 }
 
 // PUT /comment/:id - for approving/editing
-async function handlePutComment(pathParts, body, res) {
-    const objectId = pathParts[1]; // /comment/:id
-    if (!objectId) return json(res, { errno: 1, errmsg: 'Missing objectId' }, 400);
+async function handlePutComment(objectId, body, res) {
+    if (!objectId || objectId === 'comment') return json(res, { errno: 1, errmsg: 'Missing objectId' }, 400);
 
     const p = getPool();
     if (body.status) {
@@ -277,9 +276,8 @@ async function handlePutComment(pathParts, body, res) {
 }
 
 // DELETE /comment/:id
-async function handleDeleteComment(pathParts, res) {
-    const objectId = pathParts[1];
-    if (!objectId) return json(res, { errno: 1, errmsg: 'Missing objectId' }, 400);
+async function handleDeleteComment(objectId, res) {
+    if (!objectId || objectId === 'comment') return json(res, { errno: 1, errmsg: 'Missing objectId' }, 400);
 
     const p = getPool();
     // Also delete replies
@@ -353,7 +351,12 @@ module.exports = async function handler(req, res) {
 
     const url = new URL(req.url, 'https://' + (req.headers.host || 'localhost'));
     const pathname = url.pathname;
-    const pathParts = pathname.split('/').filter(Boolean); // ['comment'] or ['comment', 'id'] or ['counter'] or ['user']
+    const pathParts = pathname.split('/').filter(Boolean); // ['comment'] or ['comment', 'id'] or ['api', 'comment'] or ['api', 'comment', 'id']
+
+    // Extract comment objectId from path, handling both /comment/:id and /api/comment/:id
+    function getObjectId(parts) {
+        return parts[parts.length - 1]; // last segment is always the objectId
+    }
 
     const isCommentPath = pathname === '/comment' || pathname.startsWith('/comment/') || pathname === '/api/comment' || pathname.startsWith('/api/comment/');
     const isCounterPath = pathname === '/counter' || pathname === '/api/counter';
@@ -362,15 +365,22 @@ module.exports = async function handler(req, res) {
     try {
         if (isCommentPath) {
             if (req.method === 'GET') {
+                // If path has an ID segment, it's a single-comment query
+                const id = getObjectId(pathParts);
+                if (id && id !== 'comment') {
+                    const r = await getPool().query('SELECT * FROM wl_comment WHERE object_id = $1', [id]);
+                    if (r.rows.length === 0) return json(res, { errno: 1, errmsg: 'Comment not found' }, 404);
+                    return json(res, { errno: 0, errmsg: '', data: toComment(r.rows[0]) });
+                }
                 return await handleGetComment(Object.fromEntries(url.searchParams), res);
             } else if (req.method === 'POST') {
                 const body = await readBody(req);
                 return await handlePostComment(body, req, res);
             } else if (req.method === 'PUT') {
                 const body = await readBody(req);
-                return await handlePutComment(pathParts, body, res);
+                return await handlePutComment(getObjectId(pathParts), body, res);
             } else if (req.method === 'DELETE') {
-                return await handleDeleteComment(pathParts, res);
+                return await handleDeleteComment(getObjectId(pathParts), res);
             }
         }
 

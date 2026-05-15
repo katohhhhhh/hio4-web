@@ -1,7 +1,7 @@
 {
   "rewrites": [
     { "source": "/comment", "destination": "/api/comment" },
-    { "source": "/comment/(.*)", "destination": "/api/comment" },
+    { "source": "/comment/(.*)", "destination": "/api/comment/$1" },
     { "source": "/counter", "destination": "/api/comment" },
     { "source": "/user", "destination": "/api/comment" }
   ]
