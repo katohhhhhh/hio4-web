@@ -216,7 +216,18 @@ async function handleGetComment(params, res) {
 async function handlePostComment(body, req, res) {
     const p = getPool();
     const objectId = genId();
-    const nick = (body.nick || 'Anonymous').trim();
+    let nick = (body.nick && body.nick.trim()) || ('zhanfan' + Math.floor(Math.random() * 100000));
+
+    // Ensure nickname uniqueness: if taken, append random suffix
+    const existing = await p.query('SELECT object_id FROM wl_comment WHERE nick = $1 LIMIT 1', [nick]);
+    if (existing.rows.length > 0) {
+        const suffix = Math.floor(Math.random() * 100000);
+        if (/_\d{5}$/.test(nick)) {
+            nick = nick.replace(/_\d{5}$/, '_' + suffix);
+        } else {
+            nick = nick + '_' + suffix;
+        }
+    }
     if (!body.comment || !body.comment.trim()) {
         return json(res, { errno: 1, errmsg: 'Comment content is required' }, 400);
     }
