@@ -441,6 +441,23 @@ kbd {
 
 /* ===== Discussion ===== */
 .discussion { padding: 60px 0; background: var(--bg-panel); }
+.discussion-card {
+    max-width: 800px; margin: 0 auto;
+    background: var(--bg-card); border: 1px solid var(--border-dark);
+    padding: 20px;
+    position: relative;
+}
+.discussion-card::after {
+    content: ''; position: absolute; bottom: 0; right: 0;
+    width: 24px; height: 24px;
+    border-right: 2px solid rgba(200,168,78,0.25);
+    border-bottom: 2px solid rgba(200,168,78,0.25);
+    pointer-events: none;
+}
+
+/* Hide Waline copyright */
+.waline-container .wl-copyright,
+.wl-copyright { display: none !important; }
 
 /* ===== Footer ===== */
 .footer {
