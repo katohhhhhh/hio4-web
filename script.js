@@ -123,5 +123,22 @@
         setTimeout(function() { toast.style.opacity = '0'; setTimeout(function() { toast.remove(); }, 300); }, 2500);
     }
 
+    // ====== Collapsible Tutorial Blocks ======
+    document.querySelectorAll('.tutorial-block').forEach(function(block) {
+        var header = block.querySelector('.block-header');
+        if (!header) return;
+
+        var body = document.createElement('div');
+        body.className = 'tutorial-body';
+        while (header.nextSibling) {
+            body.appendChild(header.nextSibling);
+        }
+        block.appendChild(body);
+
+        header.addEventListener('click', function() {
+            block.classList.toggle('collapsed');
+        });
+    });
+
 
 })();
